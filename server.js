@@ -157,5 +157,5 @@ app.use(function (req, res, next) {
 
 
 // start the express server
-app.listen(app.get('port'), () => console.log(`App started on port ${app.get('port')}`)||process.env.PORT);
+app.listen(process.env.PORT || app.get('port'), () => console.log(`App started on port ${app.get('port')}`));
 
