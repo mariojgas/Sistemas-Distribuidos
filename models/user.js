@@ -2,8 +2,13 @@ var Sequelize = require('sequelize');
 var bcrypt = require('bcrypt');
 
 // create a sequelize instance with our local postgres database information.
-var sequelize = new Sequelize('postgres://postgres:123@localhost:5432/auth-system');
-
+var sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
+      dialect:  'postgres',
+      protocol: 'postgres',
+      port:     match[4],
+      host:     match[3],
+      logging:  true //false
+    })
 // setup User model and its fields.
 var User = sequelize.define('users', {
     username: {
